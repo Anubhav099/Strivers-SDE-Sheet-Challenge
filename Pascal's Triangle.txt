@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.* ;
+
+import java.util.ArrayList;
+
+public class Solution {
+	public static ArrayList<Long> generateRow(int row){
+		ArrayList<Long> ansRow = new ArrayList<>();
+		long ans=1;
+		ansRow.add(ans);
+		for(int col=1; col<row; col++){
+			ans=ans*(row-col);
+			ans=ans/col;
+			ansRow.add(ans);
+		}
+		return ansRow;
+	}
+	public static ArrayList<ArrayList<Long>> printPascal(int n) {
+                 // Write your code here.
+				 ArrayList<ArrayList<Long>> pascalTree= new ArrayList<>();
+				 for(int i=1; i<=n; i++)
+				 {
+					 pascalTree.add(generateRow(i));
+				 }
+				 return pascalTree;
+	}
+}
