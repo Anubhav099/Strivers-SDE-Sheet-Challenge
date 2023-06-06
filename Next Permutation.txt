@@ -1,0 +1,85 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Solution 
+{
+	public static ArrayList<Integer> nextPermutation(ArrayList<Integer> A) 
+	{
+		// Write your code here.
+		int n = A.size(); //sizeOfPermutation
+		int ind=-1;
+
+		for(int i=n-2; i>=0; i--){
+			if(A.get(i)<A.get(i+1)){
+				ind=i;
+				break;
+			}
+		}
+		if(ind == -1){
+			Collections.reverse(A);
+			return A;
+		}
+
+		//2nd step
+		for(int i = n-1; i>ind; i--){
+			if(A.get(i)>A.get(ind)){
+				int t = A.get(i);
+				A.set(i, A.get(ind));
+				A.set(ind,t);
+				break;
+			}
+		}
+
+		Collections.reverse(A.subList(ind + 1, n));
+
+        // ArrayList<Integer> sublist = new ArrayList<>(A.subList(ind + 1, n));
+        // Collections.reverse(sublist);
+        // A.subList(ind + 1, n).clear();
+        // A.addAll(sublist);
+
+		return A;
+
+		// int n = int lastElem = sizeOfPermutation - 1;
+		// int i=1;
+		// int swappingVal=-1;
+		// while(i>0)
+		// {
+		// 	if(i<n)
+		// 	{
+		// 		int before = permutation.get(n-i-1);
+		// 		int later = permutation.get(n-i);
+		// 		if(before<later)
+		// 		{	
+		// 			if(swappingVal<later && swappingVal>before)
+		// 			{
+		// 				int index= permutation.indexOf(swappingVal);
+		// 				permutation.set(n-i,permutation.get(index));
+		// 				permutation.set(index,later);
+		// 			}
+		// 			else
+		// 			{
+		// 				permutation.set(n-i,permutation.get(n-i-1));
+		// 				permutation.set(n-i-1,later);
+		// 			}
+		// 			i--;
+		// 		}
+		// 		else
+		// 		{
+		// 			if(before>later)
+		// 			{
+		// 				swappingVal = later;
+		// 			}
+		// 			i++;
+		// 		}
+		// 	}
+		// 	else
+		// 	{
+		// 		Collections.sort(permutation);
+		// 		i=0;
+		// 	}
+		// }
+		// return permutation;
+	}
+}
