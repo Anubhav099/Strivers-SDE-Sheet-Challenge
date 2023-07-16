@@ -1,0 +1,4 @@
+LC 53 Maximum Subarray			Kadane's Algo
+LC 75. Sort Colors.txt			Dutch National Flag Algo
+LC 56. Merge Intervals			Shell Sort (Gap method)
+LC 287. Find the Duplicate Number	Linked List Slow-Fast pointers
