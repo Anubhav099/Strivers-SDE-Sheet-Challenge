@@ -1,0 +1,41 @@
+public class Solution {
+    public static int[] findMissingRepeatingNumbers(int []nums) {
+        // Write your code here
+        int[] ans = new int[2];
+
+        // // Using a hash Array TC: O(2n) & SC: O(n)
+        // int[] map = new int[nums.length+1];
+        // for(int i=0; i<nums.length; i++)
+        // {   if(map[nums[i]]==1) map[nums[i]]=2;
+        //     else    map[nums[i]]=1;
+        // }
+        // for(int i=0; i<nums.length+1; i++)
+        // {
+        //     if(map[i]==0) ans[1] = i;
+        //     else if(map[i]==2) ans[0] = i;
+
+        //     if(ans[0]!=0 && ans[1]!=0)  break;
+        // }
+
+        // // Using maths approac TC: O(n) & SC: O(1)
+        long n = nums.length;
+        long SN = (n*(n+1))/2;
+        long S2N = (n*(n+1)*(2*n+1))/6;
+        long S = 0, S2 = 0;
+
+        for(int i=0; i<n; i++)
+        {
+            S += nums[i];
+            S2 += nums[i]*nums[i];
+        }
+
+        long val1 = S-SN;   // x-y
+        long val2 = S2 - S2N;
+        val2 /= val1;     // x+y
+
+        ans[0] = (int)(val1+val2)/2;
+        ans[1] = ans[0] - (int)val1;
+
+        return ans;
+    }
+}
