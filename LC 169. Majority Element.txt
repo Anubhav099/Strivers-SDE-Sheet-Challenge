@@ -1,0 +1,19 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        // Applying Moore's Algo
+        int cnt =0;
+        int elem = 0;
+        for(int i=0; i<nums.length; i++)
+        {
+            if(cnt==0)
+            {
+                cnt=1;
+                elem = nums[i];
+            }
+            else if(elem == nums[i]) cnt++;
+            else cnt--;
+        }
+        return elem;
+        //if the probelem doesn't state: there must be a Majority Elem, we would need to check if the elem is indeed majority or not. If not, there exists no majority elem.
+    }
+}
