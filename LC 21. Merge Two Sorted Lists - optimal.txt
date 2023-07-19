@@ -1,0 +1,77 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1 == null) return l2;
+        if(l2 == null) return l1;
+
+        ListNode temp = null;
+        if(l1.val>l2.val)
+        {
+            temp = l1;
+            l1 = l2;
+            l2 = temp;
+        }
+        ListNode res = l1;
+        while(l1 != null && l2 != null)
+        {
+            while( l1!=null && l1.val<=l2.val)
+            {
+                temp = l1;
+                l1 = l1.next;
+            }
+            temp.next = l2;
+
+            // swapping for l1 to be pointing to the least elem
+            temp = l1;
+            l1 = l2;
+            l2 = temp;
+        }
+        if(l2!=null) l1.next = l2;
+        return res;
+    }
+}
+// TC: O(n1+n2) SC: O(1)
+
+
+
+// Alternate Simpler Optimal Soln
+
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        if(list1 == null)   return list2;
+        if(list2 == null)   return list1;
+        
+        ListNode head = new ListNode();
+        ListNode dummy = head;
+        while(list1 != null && list2 != null)
+        {
+            if(list1.val <= list2.val){
+                dummy.next = list1;
+                dummy = list1; 
+                list1 = list1.next;
+            }
+            else
+            {
+                dummy.next = list2;
+                dummy = list2; 
+                list2 = list2.next;
+            }
+
+        }
+        if(list1!=null)
+            dummy.next = list1;
+        if(list2 != null)
+            dummy.next = list2;
+        return head.next;
+    }
+}
+//TC: O(n1+n2), SC: O(1)
