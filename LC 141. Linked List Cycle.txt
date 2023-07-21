@@ -20,13 +20,6 @@ public class Solution {
             slow = slow.next;
             fast = fast.next.next;
         }while( slow != fast );
-
-        fast = head;
-        while(slow!=fast)
-        {
-            slow = slow.next;
-            fast = fast.next;
-        }
         return true;
     }
 }
