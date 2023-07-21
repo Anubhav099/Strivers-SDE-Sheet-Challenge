@@ -1,0 +1,54 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        
+        ListNode d1 = head;
+        ListNode d2 = head;
+        ListNode d3 = new ListNode(0);
+        int flag =1;
+        while(d2!=null)
+        {
+            for(int i=0; i<k-1; i++)
+            {
+                if(d2!=null) d2 = d2.next;
+            }
+            if(d2!=null)
+            {
+                d3.next=d2;
+                d2=d2.next;
+            }
+            else return head;
+            if(flag==1)
+            {
+                flag=0;
+                head = reverseLL(d1, d2, k);
+            }
+            else reverseLL(d1,d2,k);
+            d3 = d1;
+            d1 = d2;
+        }
+        System.gc();
+        return head;
+    }
+
+    ListNode reverseLL(ListNode head, ListNode prev, int k){
+        while( k-- >0 )
+        {
+            ListNode next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
+    }
+}
+// TC: O(n + (n/k)*k), SC: O(1)
