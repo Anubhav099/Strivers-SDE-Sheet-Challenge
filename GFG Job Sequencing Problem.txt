@@ -1,0 +1,45 @@
+class Solution
+{
+    //Function to find the maximum profit and the number of jobs done.
+    int[] JobScheduling(Job arr[], int n)
+    {
+        // Your code here
+        int lastTime = 0;
+        for(Job j: arr)
+            lastTime = Math.max(lastTime, j.deadline);
+        
+        Arrays.sort(arr, (a,b) -> b.profit-a.profit);
+        
+        int[] result = new int[lastTime];
+        int jobProfit = 0;
+        int countJobs = 0;
+        
+        for(int i=0; i<n; i++)
+        {
+            for( int j=arr[i].deadline-1; j>=0; j--)
+            {
+                if(result[j]==0)
+                {
+                    result[j] = arr[i].id;
+                    countJobs++;
+                    jobProfit += arr[i].profit;
+                    break;
+                }
+            }
+        }
+        // for(int res: result)
+        //     System.out.print(res+" -> ");
+        // System.out.println();
+        return new int[]{countJobs, jobProfit};
+    }
+} // TC: O(n + nlog + n*m) SC: O(m)
+/*
+class Job {
+    int id, profit, deadline;
+    Job(int x, int y, int z){
+        this.id = x;
+        this.deadline = y;
+        this.profit = z; 
+    }
+}
+*/
