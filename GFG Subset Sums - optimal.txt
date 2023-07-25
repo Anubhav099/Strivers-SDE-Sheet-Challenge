@@ -1,0 +1,24 @@
+class Solution{
+    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int N){
+        // code here
+        ArrayList<Integer> ans = new ArrayList<>();
+        
+        rec(0, arr, ans, 0);
+        
+        return ans;
+    }
+    
+    void rec(int index, ArrayList<Integer> arr, ArrayList<Integer> ans, int sum)
+    {
+        if(index == arr.size()){
+            ans.add(sum);
+            return;
+        }
+        
+        sum += arr.get(index);
+        rec(index+1, arr, ans, sum);
+        sum -= arr.get(index);
+        rec(index+1, arr, ans, sum);
+    }
+}
+// TC: O(2^n), SC: O(1)
