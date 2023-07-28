@@ -1,0 +1,32 @@
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(candidates);
+        findComb(0, new ArrayList<>(), ans, candidates, target);
+        return ans;
+    }
+
+    void findComb(int ind, List<Integer> ds, List<List<Integer>> ans, int[] arr, int sum)
+    {
+        if(sum == 0)
+        {
+            ans.add(new ArrayList<>(ds));
+            return;
+        }
+
+        for(int i=ind; i<arr.length; i++)
+        {
+            if(i!=ind && arr[i]==arr[i-1]) continue;
+            else if(sum<arr[i]) break;
+            ds.add(arr[i]);
+            findComb(i+1, ds, ans, arr, sum - arr[i]);
+            ds.remove(ds.size()-1);
+        }
+
+        // ds.add(arr[ind]);
+        // findComb(ind+1, ds, ans, arr, sum - arr[ind]);
+        // ds.remove(ds.size()-1);
+        // findComb(ind+1, ds, ans, arr, sum);
+    }
+}
+// TC: O( 2^n * k ), SC: O(k * x) where k is the average size of all combinations.
