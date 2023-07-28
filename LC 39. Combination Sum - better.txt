@@ -1,0 +1,26 @@
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        int n= candidates.length;
+        List<List<Integer>> ans = new ArrayList<>();
+        // Arrays.sort(candidates);
+        findCombination(0, new ArrayList<>(), 0, target, ans, candidates, n);
+        return ans;
+    }
+    
+    void findCombination(int ind, List<Integer> ds, long sum, int target, List<List<Integer>> ans, int[] candidates, int n)
+    {
+        if(sum==target)
+            ans.add(new ArrayList<>(ds));
+        if(sum>=target)
+            return;
+
+        for(int i=ind; i<n; i++)
+        {
+            ds.add(candidates[i]);
+            findCombination(i, ds, sum+candidates[i], target, ans, candidates, n);
+            ds.remove(ds.size()-1);
+            // if(sum+candidates[i]>=target) i++;
+        }
+    }
+}
+// TC: O( n * 2^t * k ), SC: O( k ) where k is the avg size of the combinations.
