@@ -1,0 +1,33 @@
+class Solution {
+    public static List<List<String>> partition(String s) {
+        List<List<String>> ans = new ArrayList <>();
+        partitionHelper(0, s, new ArrayList <>(), ans);
+        return ans;
+    }
+
+    static void partitionHelper(int ind, String s, List<String>ds, List<List<String>> ans)
+    {
+        if(ind == s.length())
+            ans.add(new ArrayList<>(ds));
+
+        for(int i = ind; i < s.length(); i++)
+            if (isPalindrome(s, ind, i))
+            {
+                ds.add(s.substring(ind, i + 1));
+                partitionHelper(i + 1, s, ds, ans);
+                ds.remove(ds.size() - 1);
+            }
+    }
+
+    static boolean isPalindrome(String s, int i, int j) {
+        while(i <= j)
+        {
+            if (s.charAt(i++) != s.charAt(j--))
+                return false;
+        }
+        return true;
+    }
+}
+// for all the character check if the the string till ch is a palindrome,
+// add the substring to the ds and call the recursion while backtracking, remove the previous substring added
+// and if the last char is crossed, just add the list to the ans and return
