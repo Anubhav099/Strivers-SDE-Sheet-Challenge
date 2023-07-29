@@ -1,0 +1,44 @@
+class Solution {
+    public List<List<String>> partition(String s) {
+        List<List<String>> ans = new ArrayList<>();
+        List<StringBuilder> ds = new ArrayList<>();
+        ds.add(new StringBuilder(String.valueOf(s.charAt(0))));
+        findComb(1, ds, ans, s);
+        return ans;
+    }
+
+    void findComb(int ind, List<StringBuilder> ds, List<List<String>> ans, String s)
+    {
+        if(ind == s.length())
+        {
+            List<String> strList = new ArrayList<>();
+            for (StringBuilder sb : ds)
+            {
+                strList.add(sb.toString());
+                if(checkNotPal(sb.toString())) return;
+            }
+            ans.add(strList);
+            return;
+        }
+        StringBuilder str = ds.get(ds.size()-1);
+        str.append(s.charAt(ind));
+        findComb(ind+1, ds, ans, s);
+        str.deleteCharAt(str.length()-1);
+
+        ds.add(new StringBuilder(Character.toString(s.charAt(ind))));
+        findComb(ind+1, ds, ans, s);
+        ds.remove(ds.size()-1);
+    }
+    boolean checkNotPal(String s)
+    {
+        int i=0, j=s.length()-1;
+        while(i<=j)
+        {
+            if(s.charAt(i)!=s.charAt(j))
+                return true;
+            i++; j--;
+        }
+        return false;
+    }
+}
+// TC: O( 2^n ), SC : ( n )
