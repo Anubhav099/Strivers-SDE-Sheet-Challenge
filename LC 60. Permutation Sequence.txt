@@ -1,0 +1,28 @@
+class Solution {
+    public String getPermutation(int n, int k) {
+        StringBuilder ans = new StringBuilder("");
+        List<Integer> nums = new ArrayList<>();
+        for(int i=1; i<=n; i++)
+            nums.add(i);
+        rec(ans, n, k, nums);
+        return ans.toString();
+    }
+
+    void rec(StringBuilder ans, int n, int k, List<Integer> nums)
+    {
+        if( nums.size() == 0 ) return;
+
+        int[] arr = new int[]{ 0, 1, 1, 2, 6, 24, 120, 720, 5040, 40320 };
+        int ind = k / arr[n];
+        k = k % arr[n];
+        if(k==0) {
+            ind--;
+            k = arr[n];
+        }
+        ans.append( nums.get( ind ) );
+        nums.remove( ind );
+        
+        rec( ans, n-1, k, nums );
+    }
+}
+// TC: O( n ), SC: O( n ) // Constraint was given: 1 <= n <= 9 . So, the sol is extremely efficient.
