@@ -1,0 +1,18 @@
+class Solution {
+    public int singleNonDuplicate(int[] nums) {
+        if (nums.length == 1) return nums[0];
+        int low = 0;
+        int high = nums.length - 2;
+        // if the ans is last element, then everything is in the left half and the low will try to shift to right half and eventually land on the last elem
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if ((mid % 2 == 0 && nums[mid] == nums[mid + 1])
+            || (mid % 2 == 1 && nums[mid - 1] == nums[mid])) low = mid + 1;
+            // we are in the left part
+            else high = mid - 1;
+            // we are in the right part
+        }
+        return nums[low];
+    }
+}
+// TC: O(log n), SC: O(1)
