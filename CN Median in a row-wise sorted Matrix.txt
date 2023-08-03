@@ -1,0 +1,30 @@
+public final class Solution {
+    public static int findLessThanOrEq(int[] row, long cnt) {
+        int ans = 0;
+        int l = 0;
+        int h = row.length - 1;
+        while (l <= h) {
+            int mid = (l + (h-l)/2);
+            if (row[mid] <= cnt) l = mid + 1;
+            else h = mid - 1;
+        }
+        return l;
+    }
+    public static int findMedian(int matrix[][], int m, int n) {
+        // Write your code here
+        long low = 1;
+        long high = (long)1e9;
+        while (low<=high) {
+            long mid = (low + (high-low)/2);
+            int cnt = 0;
+            for(int row[]: matrix)
+                cnt += findLessThanOrEq(row, mid);
+            // System.out.println("low:"+low+",mid:"+mid+",high:"+high+",cnt:"+cnt);
+            if( cnt < (float)(m * n) / 2) low = mid + 1;
+            else high = mid - 1;
+        }
+        return (int)low;
+    }
+}
+// TC: O( n*log n * 32 ) 
+// Since, 32 is the maximum length of int and also 10^9 almost= 2^32
