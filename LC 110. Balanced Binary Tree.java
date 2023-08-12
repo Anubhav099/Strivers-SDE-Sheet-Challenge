@@ -25,6 +25,7 @@ class Solution {
         return Math.max(left, right) + 1;
     }
 }
+// TC: O(n^2)
 
 // Smart Approach:
 class Solution {
@@ -43,4 +44,5 @@ class Solution {
         return Math.max(left, right) + 1;
     }
 }
+// TC: O(n)
 // This code traverses the tree only once, rather than finding height at every node which means traversing the whole subtree at every step.
