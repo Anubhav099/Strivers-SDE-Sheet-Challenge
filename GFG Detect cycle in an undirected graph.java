@@ -45,15 +45,6 @@ class Solution {
 // BFS Approach
 
 class Solution {
-    private class Pair {
-        int node;
-        int parent;
-        Pair(int node, int parent) {
-            this.node = node;
-            this.parent = parent;
-        }
-    }
-    
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
         // Code here
@@ -61,18 +52,18 @@ class Solution {
         
         for (int i = 0; i < V; i++)
             if (!vis[i])
-                if (bfs(new Pair(i, -1), adj, vis)) return true;
+                if (bfs(i, -1, adj, vis)) return true;
                 
         return false;
     }
     
-    private boolean bfs(Pair cur, ArrayList<ArrayList<Integer>> adj, boolean[] vis) {
-        if (vis[cur.node]) return true;
+    private boolean bfs(int cur, int parent, ArrayList<ArrayList<Integer>> adj, boolean[] vis) {
+        if (vis[cur]) return true;
         
-        vis[cur.node] = true;
-        for (int i: adj.get(cur.node))
-            if (i != cur.parent)
-                if(bfs(new Pair(i, cur.node), adj, vis)) return true;
+        vis[cur] = true;
+        for (int i: adj.get(cur))
+            if (i != parent)
+                if(bfs(i, cur, adj, vis)) return true;
                 
         return false;
     }
