@@ -9,3 +9,4 @@ LC 229. Majority Element II		Extended Moore's Voting Algo (for n/3)
 LC 62. Unique Paths			Recursion & Dynamic Programming
 GFG Flattening a Linked List		Resursion
 GFG Topological sort			Kahn's Algo
+CN Ninja's Training			2D DP
