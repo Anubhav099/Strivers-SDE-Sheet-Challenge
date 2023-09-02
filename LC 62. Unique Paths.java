@@ -64,6 +64,20 @@ class Solution {
         return left;
     }
 }
+// shorter code:
+class Solution {
+    int uniquePaths(int m, int n) {
+        int up[] = new int[n];
+        up[0] = 1;
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++) {
+                int cnt = up[j];
+                if (j > 0) cnt += up[j - 1];
+                up[j] = cnt;
+            }
+        return up[n - 1];
+    }
+}
 
 
 
