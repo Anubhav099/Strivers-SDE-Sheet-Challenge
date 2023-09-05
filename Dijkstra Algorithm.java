@@ -15,27 +15,30 @@ class Solution
             this.dis = dis;
         }
     }
-
+    //Function to find the shortest distance of all the vertices
+    //from the source vertex S.
     int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
     {
-	// initial-config
-        PriorityQueue<Pair> heap = new PriorityQueue<>((a, b) -> a.dis - b.dis);
+        // Write your code here
+        Queue<Pair> heap = new LinkedList<>();
         int dist[] = new int[V];
         Arrays.fill(dist, Integer.MAX_VALUE);
         heap.offer(new Pair(S, 0));
         dist[S] = 0;
         
         while (!heap.isEmpty()) {
-            int cur = heap.peek().node;
-            int dis = heap.poll().dis;
+            int curVertex = heap.peek().node;
+            int curVertexDis = heap.poll().dis;
             
-            for (ArrayList<Integer> li: adj.get(cur)) {
-                int node = li.get(0);
-                int newDist = dis + li.get(1);
+            if (curVertexDis > dist[curVertex]) continue;
+            
+            for (ArrayList<Integer> li: adj.get(curVertex)) {
+                int neighVertex = li.get(0);
+                int edgeWeight = li.get(1);
                 
-                if (newDist < dist[node]) {
-                    dist[node] = newDist;
-                    heap.offer(new Pair(node, newDist));
+                if (curVertexDis + edgeWeight < dist[neighVertex]) {
+                    dist[neighVertex] = curVertexDis + edgeWeight;
+                    heap.offer(new Pair(neighVertex, dist[neighVertex]));
                 }
             }
         }
