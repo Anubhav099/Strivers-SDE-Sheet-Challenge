@@ -20,7 +20,7 @@ class Solution
     int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
     {
         // Write your code here
-        Queue<Pair> heap = new LinkedList<>();
+        PriorityQueue<Pair> heap = new PriorityQueue<>((a, b) -> a.dis - b.dis);
         int dist[] = new int[V];
         Arrays.fill(dist, Integer.MAX_VALUE);
         heap.offer(new Pair(S, 0));
