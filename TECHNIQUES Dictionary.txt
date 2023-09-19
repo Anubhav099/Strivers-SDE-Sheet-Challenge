@@ -10,3 +10,7 @@ LC 62. Unique Paths			Recursion & Dynamic Programming
 GFG Flattening a Linked List		Resursion
 GFG Topological sort			Kahn's Algo
 CN Ninja's Training			2D DP
+
+SSSP - Dij, Belman-Ford
+APSP - Floyd-Warshall
+MST - Prim's, Kruskal
