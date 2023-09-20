@@ -11,6 +11,6 @@ GFG Flattening a Linked List		Resursion
 GFG Topological sort			Kahn's Algo
 CN Ninja's Training			2D DP
 
-SSSP - Dij, Belman-Ford
+SSSP - Dij(only +ve edges), Belman-Ford(-ve Edges but no -ve Cycles)
 APSP - Floyd-Warshall
-MST - Prim's, Kruskal
+MST - Prim's(pq), Kruskal(Sorted Adj list)
