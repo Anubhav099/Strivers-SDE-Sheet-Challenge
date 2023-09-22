@@ -1,4 +1,4 @@
-// DFS approach
+// BFS approach
 
 class Solution {
     private class Pair {
@@ -42,7 +42,7 @@ class Solution {
 }
 
 
-// BFS Approach
+// DFS Approach
 
 class Solution {
     // Function to detect cycle in an undirected graph.
@@ -52,18 +52,18 @@ class Solution {
         
         for (int i = 0; i < V; i++)
             if (!vis[i])
-                if (bfs(i, -1, adj, vis)) return true;
+                if (dfs(i, -1, adj, vis)) return true;
                 
         return false;
     }
     
-    private boolean bfs(int cur, int parent, ArrayList<ArrayList<Integer>> adj, boolean[] vis) {
+    private boolean dfs(int cur, int parent, ArrayList<ArrayList<Integer>> adj, boolean[] vis) {
         if (vis[cur]) return true;
         
         vis[cur] = true;
         for (int i: adj.get(cur))
             if (i != parent)
-                if(bfs(i, cur, adj, vis)) return true;
+                if(dfs(i, cur, adj, vis)) return true;
                 
         return false;
     }
