@@ -32,3 +32,16 @@ class Solution {
         // return ans;
     }
 }
+
+
+// OPTIMAL
+private long pow(long x, long n, int mod) {
+        long res = 1;
+        while (n > 0) {
+            if (n % 2 == 1) res = (res * x) % mod;
+            x = (x * x) % mod;
+            n /= 2;
+        }
+        // System.out.println(res);
+        return res;
+    }
