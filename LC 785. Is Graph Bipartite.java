@@ -2,7 +2,7 @@
 	- The graph's vertices can be partitioned into two sets, say set A and set B, in such a way that every edge connects a vertex from set A to a vertex from set B.
 	- There are no edges that connect vertices within the same set (i.e., no edges from set A to set A or from set B to set B).
 	- No Cycles of Odd Length.
-	- Bipartite graphs can be colored using only two colors, such that no two adjacent vertices have the same color. This makes them 2-colorable. [we use this fact to tell if the given graph is bipartite or not]
+	- Bipartite graphs can be colored using only two colors, such that no two adjacent vertices have the same color. This makes them 2-colorable. [we use this fact to tell if the given graph is bipartite or not] */
 
 // using DFS of graph
 
