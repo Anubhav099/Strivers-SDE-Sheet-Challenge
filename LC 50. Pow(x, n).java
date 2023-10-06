@@ -8,30 +8,31 @@ class Solution {
         else if(n>0) ans = half*half*x;
         else if(n<0) ans = half*half/x;
         return ans;
-        
-	// // Another approach using iterations instead
-        // double ans = 1.0;
-        // long N = n;
-        // if(n<0) N = -N;
-
-        // while(N>0)
-        // {
-        //     if(N%2==1)
-        //     {
-        //         ans *= x;
-        //         N--;
-        //     }
-        //     else
-        //     {
-        //         x *= x;
-        //         N /= 2;
-        //     }
-        // }
-
-        // if(n<0) ans = 1.0/ans;
-        // return ans;
     }
 }
+
+
+
+// Another approach using iterations instead
+public double myPow(double x, int n) {
+	double ans = 1.0;
+	long N = n;
+	if(n<0) N = -N;
+	
+	while(N>0) {
+		if(N%2==1) {
+	        	ans *= x;
+	        	N--;
+	        } else {	
+			x *= x;
+	        	N /= 2;
+	        }
+	}
+	
+	if(n<0) ans = 1.0 / ans;
+	return ans;
+}
+
 
 
 // OPTIMAL
