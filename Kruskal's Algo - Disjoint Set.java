@@ -12,7 +12,7 @@ class DisjointSet {
     int findParent(int u) {
         if (parent[u] == u)
             return u;
-        return parent[u] = findParent(parent[u]);
+        return parent[u] = findParent(parent[u]); // path compression
     }
     
     void union(int u, int v) {  // union by size
@@ -22,8 +22,10 @@ class DisjointSet {
         
         if (size[root_v] > size[root_u]) {
             parent[root_u] = root_v;
+            size[root_v] += size[root_u];
         } else {
             parent[root_v] = root_u;
+            size[root_u] += size[root_v];
         }
     }
 }
