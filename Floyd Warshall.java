@@ -20,7 +20,7 @@ class Solution
 
 // In this question, -ve cycles weren't allowed. Hence, we can just use Dij algo (SSSP algo) for every vertex.
 // TC: O(n*n*logV)
-// Note: if -ve cycle is present, this will fall under an infinite loop.
+// Note: if -ve cycle is present, this dijkstra's approach will fall under an infinite loop.
 class Solution
 {
     class Pair {
